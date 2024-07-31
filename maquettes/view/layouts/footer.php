@@ -2,5 +2,7 @@
     <div class="float-right d-none d-sm-block">
         <b>Version</b> 3.0.0
     </div>
-    <strong>Droits d'auteur © 2014-2021 <a href="https://adminlte.io" class="text-info">Gestion de Projets</a>.</strong> Tous droits réservés.
+    <strong>Copyright © 2024 Media Benotman sarl<a href="https://dev-media-ben-otman.pantheonsite.io/" class="text-info"></a>.</strong> All Rights Reserved.
 </footer>
+
+

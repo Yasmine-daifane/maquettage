@@ -1,7 +1,3 @@
-<?php 
-    session_start();
-?>
-<!-- <nav class="main-header navbar navbar-expand navbar-white navbar-light"> -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Liens de navigation de gauche -->
     <ul class="navbar-nav">
@@ -11,7 +7,6 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="/view/assets/images/man.png" class="user-image img-circle elevation-2" alt="Image d'utilisateur">
@@ -22,7 +17,7 @@
                 <li class="user-header bg-info">
                     <img src="/view/assets/images/man.png" class="img-circle elevation-2" alt="Image d'utilisateur">
                     <p>
-                    chef de Projets
+                   user
                         <small>Membre depuis le 28/12/2023</small>
                     </p>
                 </li>
@@ -34,7 +29,6 @@
                     </a>
                 </li>
             </ul>
-
         </li>
     </ul>
 </nav>
