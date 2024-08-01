@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
+<head>
+  <!-- Include the header -->
+  <?php include_once "../layouts/heade.php" ?>
 
-<!-- Inclure l'en-tête -->
-<?php include_once "../layouts/heade.php" ?>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+  <script>
+    tinymce.init({
+      selector: '#detailsTextarea',
+      menubar: false,
+      plugins: 'lists link image preview',
+      toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+      height: 300
+    });
+
+    $(document).ready(function() {
+      $('.btn-select-pack').on('click', function() {
+        $('#detailsModal').modal('show');
+      });
+      
+      $('#detailsForm').on('submit', function(e) {
+        e.preventDefault();
+        alert('Form submitted with details: ' + tinymce.get('detailsTextarea').getContent());
+        $('#detailsModal').modal('hide');
+      });
+    });
+  </script>
+</head>
 
 <body class="sidebar-mini" style="height: auto;">
-
   <div class="wrapper">
     <!-- Navigation -->
     <?php include_once "../layouts/nav.php" ?>
-    <!-- Barre latérale -->
+    <!-- Sidebar -->
     <?php include_once "../layouts/aside.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -59,7 +86,7 @@
                         <th>Description</th>
                         <th>Features</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <th>Choose</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -79,7 +106,7 @@
                               </ul>
                             </td>
                             <td>$99</td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Select Pack</a></td>
+                            <td><a href="#" class="btn btn-primary btn-sm btn-select-pack">Select Pack</a></td>
                           </tr>
                           <tr>
                             <td>Standard Video Pack</td>
@@ -92,7 +119,7 @@
                               </ul>
                             </td>
                             <td>$199</td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Select Pack</a></td>
+                            <td><a href="#" class="btn btn-primary btn-sm btn-select-pack">Select Pack</a></td>
                           </tr>
                           <?php
                           break;
@@ -115,13 +142,20 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- Inclure le pied de page -->
+    <!-- Include footer -->
     <?php include_once "../layouts/footer.php" ?>
-
   </div>
 
-  <!-- Inclure le script -->
+  <!-- Include scripts -->
   <?php include_once "../layouts/script-link.php" ?>
-</body>
 
-</html>
+  <!-- Modal HTML -->
+  <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Details for Selected Pack</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>

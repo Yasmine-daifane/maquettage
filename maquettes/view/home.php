@@ -36,80 +36,76 @@ session_start();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Bienvenue</h1>
+                            <h1 style="color: #007bff; font-weight: bold;">Hello , 
+                            <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'User'; ?>
+                            </h1>
                         </div>
                     </div>
                 </div>
             </div>
             <section class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-4 col-6">
+                <div class="row">
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>15</h3>
+                <p>Orders</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="./projets/index.php" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
 
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3>15</h3>
-                                    <p>Projets</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                                <a href="./projets/index.php" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>23</h3>
+                <p>Transactions</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="./taches/index.php" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
 
-                        <div class="col-lg-4 col-6">
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-warning">
+            <div class=" user inner d-flex align-items-center justify-content-between">
+                <div>
+                    <h3>60</h3>
+                    <p>Your credit balance is : 0.00 MAD</p>
+                </div>
+                <div>
+                    <?php include_once "./Pole-social/form.php"; ?>
+                </div>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="./utilisateurs/index.php" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
 
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>23</h3>
-                                    <p>Taches</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                                <a href="./taches/index.php" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
+<style>
+    .small-box .user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
 
-                        <div class="col-lg-4 col-6">
+    .small-box ..user .btn {
+        margin-left: 10px; /* Optional: Adjust the spacing between the text and the button */
+    }
+</style>
 
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3>60</h3>
-                                    <p>Utilisateurs</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="./utilisateurs/index.php" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                    </div>
                     <!-- New row for charts -->
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Progression des projets</h3>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="barChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Évolution des tâches</h3>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="lineChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  
 
                     <!-- Enhanced section for coupons and sales -->
                     <div class="row mt-4 justify-content-center">
@@ -164,6 +160,46 @@ session_start();
                             </div>
                         </div>
                     </div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="card-title">Progression des projets</h3>
+                <select id="timePeriod" class="form-control w-auto">
+                    <option value="month">Mois</option>
+                    <option value="week">Semaine</option>
+                    <option value="year">Année</option>
+                </select>
+            </div>
+            <div class="card-body">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Historique des transactions</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nom du Produit</th>
+                            <th>Montant</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTable">
+                        <!-- Transaction data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
                 </div>
             </section>
         </div>
@@ -176,56 +212,95 @@ session_start();
 <!-- get script -->
 <?php include_once "./layouts/script-link.php"; ?>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
-    // Bar Chart
-    var ctxBar = document.getElementById('barChart').getContext('2d');
-    var barChart = new Chart(ctxBar, {
-        type: 'bar',
-        data: {
-            labels: ['Projet A', 'Projet B', 'Projet C', 'Projet D', 'Projet E'],
-            datasets: [{
-                label: 'Progression (%)',
-                data: [65, 59, 80, 81, 56],
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initial data for the bar chart
+        var barChartData = {
+            month: {
+                labels: ['Winning Product', 'CRM', 'Community Manager', 'ADS Management', 'Design', 'Videos', 'Marketing Strategy'],
+                data: [30, 20, 15, 40, 25, 10, 35] // Example data for month
+            },
+            week: {
+                labels: ['Winning Product', 'CRM', 'Community Manager', 'ADS Management', 'Design', 'Videos', 'Marketing Strategy'],
+                data: [10, 5, 8, 12, 9, 3, 11] // Example data for week
+            },
+            year: {
+                labels: ['Winning Product', 'CRM', 'Community Manager', 'ADS Management', 'Design', 'Videos', 'Marketing Strategy'],
+                data: [100, 80, 65, 120, 90, 50, 110] // Example data for year
+            }
+        };
+
+        // Function to update the bar chart
+        function updateBarChart(timePeriod) {
+            barChart.data.labels = barChartData[timePeriod].labels;
+            barChart.data.datasets[0].data = barChartData[timePeriod].data;
+            barChart.update();
+        }
+
+        // Bar Chart
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: barChartData.month.labels,
+                datasets: [{
+                    label: 'Services Commandés',
+                    data: barChartData.month.data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 150
+                    }
                 }
             }
-        }
+        });
+
+        // Handle dropdown change
+        document.getElementById('timePeriod').addEventListener('change', function() {
+            var selectedPeriod = this.value;
+            updateBarChart(selectedPeriod);
+        });
+
+        // Sample transaction data
+        var transactions = [
+            { product: 'Winning Product', amount: '450.00 MAD', date: '31/07/24 17:40' },
+            { product: 'CRM', amount: '300.00 MAD', date: '30/07/24 15:20' },
+            { product: 'Community Manager', amount: '500.00 MAD', date: '29/07/24 14:10' },
+            { product: 'ADS Management', amount: '250.00 MAD', date: '28/07/24 16:50' },
+            { product: 'Design', amount: '600.00 MAD', date: '27/07/24 13:30' },
+            { product: 'Videos', amount: '200.00 MAD', date: '26/07/24 12:45' },
+            { product: 'Marketing Strategy', amount: '350.00 MAD', date: '25/07/24 11:25' }
+        ];
+
+        // Populate transaction table
+        var transactionTable = document.getElementById('transactionTable');
+        transactions.forEach(function(transaction) {
+            var row = document.createElement('tr');
+            var productCell = document.createElement('td');
+            var amountCell = document.createElement('td');
+            var dateCell = document.createElement('td');
+
+            productCell.textContent = transaction.product;
+            amountCell.textContent = transaction.amount;
+            dateCell.textContent = transaction.date;
+
+            row.appendChild(productCell);
+            row.appendChild(amountCell);
+            row.appendChild(dateCell);
+            transactionTable.appendChild(row);
+        });
     });
 
-    // Line Chart
-    var ctxLine = document.getElementById('lineChart').getContext('2d');
-    var lineChart = new Chart(ctxLine, {
-        type: 'line',
-        data: {
-            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
-            datasets: [{
-                label: 'Tâches complétées',
-                data: [12, 19, 3, 5, 2, 3],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                tension: 0.1,
-                fill: false
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // Initialize the carousel
-    $(document).ready(function() {
+// Initialize the carousel
+$(document).ready(function() {
         $('#carouselPromotions').carousel({
             interval: 2000
         });
@@ -344,6 +419,30 @@ session_start();
     .carousel-item:hover .new-badge {
         transform: rotate(0deg) scale(1.1);
     }
+
+
+
+
+
+    html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the wrapper spans the full viewport height */
+}
+
+.content-wrapper {
+    flex: 1; /* Allows the content-wrapper to grow and fill available space */
+    overflow: auto; /* Handle scrolling within content-wrapper */
+}
+
+.container-fluid {
+    padding-bottom: 2rem; /* Add padding if needed to avoid content being cut off */
+}
 </style>
 
 </html>

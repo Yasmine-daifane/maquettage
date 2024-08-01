@@ -24,8 +24,7 @@
               </div>
               <div class="col-sm-6">
                 <div class="float-sm-right">
-                  <!-- Add navigation buttons if needed -->
-                </div>
+                <?php include_once "../Pole-social/form.php"; ?>                </div>
               </div>
             </div>
           </div>
@@ -59,7 +58,7 @@
                         <th>Description</th>
                         <th>Features</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <th>chose</th>
                       </tr>
                     </thead>
                     <tbody>

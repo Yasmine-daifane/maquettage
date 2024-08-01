@@ -1,0 +1,71 @@
+
+classDiagram
+    %% Users
+    class User {
+        +int id
+        +string username
+        +string email
+        +string password
+        +float balance
+        +updateBalance()
+        +getTransactions()
+        +getOrders()
+    }
+
+    %% Orders
+    class Order {
+        +int id
+        +int user_id
+        +float amount
+        +date date
+        +string status
+        +getOrderDetails()
+        +updateOrder()
+    }
+
+    %% Transactions
+    class Transaction {
+        +int id
+        +int user_id
+        +float amount
+        +date date
+        +string reference_id
+        +string receipt
+        +getTransactionDetails()
+        +updateTransaction()
+    }
+
+    %% Promotions
+    class Promotion {
+        +int id
+        +string title
+        +string description
+        +float discount
+        +date valid_until
+        +string image
+        +getActivePromotions()
+        +getPromotionDetails()
+    }
+
+    %% Balance Updates
+    class BalanceUpdate {
+        +int id
+        +int user_id
+        +float amount
+        +string payment_method
+        +string receipt
+        +string reference_id
+        +string comment
+        +date created_at
+        +getUpdateDetails()
+        +updateBalance()
+    }
+
+    %% Relationships
+    User "1" -- "0..*" Order : has
+    User "1" -- "0..*" Transaction : has
+    User "1" -- "0..*" BalanceUpdate : has
+    Order "0..*" -- "1" User : belongs to
+    Transaction "0..*" -- "1" User : belongs to
+    BalanceUpdate "0..*" -- "1" User : belongs to
+

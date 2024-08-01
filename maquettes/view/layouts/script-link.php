@@ -37,3 +37,30 @@
    <!-- scripts -->
       <script src="/../../node_modules/admin-lte/plugins/bs-stepper/js/bs-stepper.min.js"></script>
    
+      <script>
+  tinymce.init({
+    selector: '#detailsTextarea',
+    menubar: false,
+    plugins: 'lists link image preview',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+    height: 300
+  });
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    // Open modal on button click
+    $('.btn-select-pack').on('click', function() {
+      $('#detailsModal').modal('show');
+    });
+    
+    // Handle form submission
+    $('#detailsForm').on('submit', function(e) {
+      e.preventDefault();
+      // Handle form submission here (e.g., send data to the server)
+      alert('Form submitted with details: ' + tinymce.get('detailsTextarea').getContent());
+      $('#detailsModal').modal('hide');
+    });
+  });
+</script>

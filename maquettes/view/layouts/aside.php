@@ -20,7 +20,7 @@ $is_pole_social_active = strpos($current_route, 'Pole-social') !== false;
                         class="nav-link <?php echo ($current_route == '/view/home.php') ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
-                            Accueil
+                            Dashbord
                         </p>
                     </a>
                 </li>
