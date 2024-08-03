@@ -15,3 +15,76 @@
 body {
     font-family: "Poppins", sans-serif;
 }
+
+
+
+
+.content {
+  padding: 40px 0;
+  background-color: #f8f9fa; /* Light background */
+}
+
+.custom-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.card-header {
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+  color: #06285D; /* Primary color for heading */
+}
+
+.card-img-top {
+  height: 200px; /* Adjust video height as needed */
+  object-fit: cover; /* Ensure video fills the container */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+.card-text {
+  color: #69727d; /* Secondary color for description */
+}
+
+.features {
+  margin-bottom: 20px;
+}
+
+.price {
+  color: #06285D; /* Primary color for price */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.btn-info {
+  background-color: #06285D;
+  border-color: #06285D;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #69727d;
+  border-color: #69727d;
+  color: white;
+}
+
+/* Hover effects */
+.custom-card:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
+
+.card-img-top:hover {
+  opacity: 0.8;
+}
+

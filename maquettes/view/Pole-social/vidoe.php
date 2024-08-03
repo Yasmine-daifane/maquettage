@@ -33,85 +33,187 @@
         </div>
       </section>
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <!-- Default box -->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Video Service Packs</h3>
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                      <input type="text" name="search" class="form-control float-right" placeholder="Search">
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="row justify-content-center">
+          <?php
+          $service = isset($_GET['service']) ? $_GET['service'] : 'video';
+          switch ($service) {
+            case 'video':
+              $packs = [
+                [
+                  'name' => 'Basic Video Pack',
+                  'description' => 'Entry-level video package for simple projects',
+                  'features' => [
+                    '1 minute video',
+                    'Basic editing',
+                    '1 revision'
+                  ],
+                  'price' => '$99',
+                  'portfolio_link' => '#'
+                ],
+                [
+                  'name' => 'Standard Video Pack',
+                  'description' => 'Comprehensive video package for most needs',
+                  'features' => [
+                    '3 minute video',
+                    'Advanced editing',
+                    '2 revisions'
+                  ],
+                  'price' => '$199',
+                  'portfolio_link' => '#'
+                ],
+                [
+                  'name' => 'Premium Video Pack',
+                  'description' => 'High-end video package for complex projects',
+                  'features' => [
+                    '5 minute video',
+                    'Professional editing',
+                    'Unlimited revisions'
+                  ],
+                  'price' => '$299',
+                  'portfolio_link' => '#'
+                ]
+              ];
+
+              foreach ($packs as $pack) {
+                ?>
+                <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="card custom-card shadow-sm border-gray rounded">
+                    <div class="card-header text-center">
+                      <h5><?php echo $pack['name']; ?></h5>
+                    </div>
+                    <div class="card-img-top">
+                      <video width="100%" height="auto" controls>
+                        <source src="path_to_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text text-center"><?php echo $pack['description']; ?></p>
+                      <div class="features">
+                        <ul class="list-group list-group-flush">
+                          <?php foreach ($pack['features'] as $feature) : ?>
+                            <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> <?php echo $feature; ?></li>
+                          <?php endforeach; ?>
+                        </ul>
                       </div>
+                    
+                      <div class="price text-center">
+                        <h4 class="card-price">Price: <?php echo $pack['price']; ?></h4>
+                      </div>
+                      <div class="actions text-center">
+                        <a href="<?php echo $pack['portfolio_link']; ?>" class="btn btn-info ">See Portfolio</a>
+
+
+
+                      </div>
+                
+                    
                     </div>
                   </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Pack Name</th>
-                        <th>Description</th>
-                        <th>Features</th>
-                        <th>Price</th>
-                        <th>chose</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $service = isset($_GET['service']) ? $_GET['service'] : 'video';
-                      switch ($service) {
-                        case 'video':
-                          ?>
-                          <tr>
-                            <td>Basic Video Pack</td>
-                            <td>Entry-level video package for simple projects</td>
-                            <td>
-                              <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success"></i> 1 minute video</li>
-                                <li><i class="fas fa-check text-success"></i> Basic editing</li>
-                                <li><i class="fas fa-check text-success"></i> 1 revision</li>
-                              </ul>
-                            </td>
-                            <td>$99</td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Select Pack</a></td>
-                          </tr>
-                          <tr>
-                            <td>Standard Video Pack</td>
-                            <td>Comprehensive video package for most needs</td>
-                            <td>
-                              <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success"></i> 3 minute video</li>
-                                <li><i class="fas fa-check text-success"></i> Advanced editing</li>
-                                <li><i class="fas fa-check text-success"></i> 2 revisions</li>
-                              </ul>
-                            </td>
-                            <td>$199</td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Select Pack</a></td>
-                          </tr>
-                          <?php
-                          break;
-                        default:
-                          echo "<tr><td colspan='5'>Service not found</td></tr>";
-                          break;
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
-          </div>
+                <?php
+              }
+              break;
+            default:
+              echo "<tr><td colspan='5'>Service not found</td></tr>";
+              break;
+          }
+          ?>
         </div>
-      </section>
+      </div>
+      <div  class= "modal-footer">
+                      <?php include_once "../Pole-social/order.php"; ?>
+                          </div>
+      
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+.content {
+  padding: 40px 0;
+  background-color: #f8f9fa; /* Light background */
+}
+
+.custom-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.card-header {
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+  color: #06285D; /* Primary color for heading */
+}
+
+.card-img-top {
+  height: 200px; /* Adjust video height as needed */
+  object-fit: cover; /* Ensure video fills the container */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+.card-text {
+  color: #69727d; /* Secondary color for description */
+}
+
+.features {
+  margin-bottom: 20px;
+}
+
+.price {
+  color: #06285D; /* Primary color for price */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.btn-info {
+  background-color: #06285D;
+  border-color: #06285D;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #69727d;
+  border-color: #69727d;
+  color: white;
+}
+
+/* Hover effects */
+.custom-card:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
+
+.card-img-top:hover {
+  opacity: 0.8;
+}
+
+
+  </style>
+
+
+<!-- /.content -->
+<!-- /.content -->
+
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

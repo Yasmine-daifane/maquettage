@@ -1,0 +1,86 @@
+classDiagram
+    class User {
+        +BigInt id
+        +String name
+        +String email
+        +String password
+        +Decimal credit_balance
+        +Timestamp created_at
+        +Timestamp updated_at
+        +hasMany(Transaction transaction)
+        +hasMany(Order order)
+        +hasMany(Statistic statistic)
+    }
+
+    class Transaction {
+        +BigInt id
+        +BigInt user_id
+        +Decimal amount
+        +Enum type
+        +String reference_id
+        +Text comment
+        +Timestamp created_at
+        +belongsTo(User user)
+    }
+
+    class Service {
+        +BigInt id
+        +String name
+        +Text description
+        +Timestamp created_at
+        +Timestamp updated_at
+        +hasMany(Pack pack)
+        +hasMany(Statistic statistic)
+    }
+
+    class Pack {
+        +BigInt id
+        +BigInt service_id
+        +String name
+        +Text description
+        +Decimal price
+        +Enum type
+        +Timestamp created_at
+        +Timestamp updated_at
+        +belongsTo(Service service)
+        +hasMany(Order order)
+        +hasMany(Statistic statistic)
+    }
+
+    class Order {
+        +BigInt id
+        +BigInt user_id
+        +BigInt pack_id
+        +Enum status
+        +Timestamp created_at
+        +Timestamp updated_at
+        +belongsTo(User user)
+        +belongsTo(Pack pack)
+    }
+
+    class Statistic {
+        +BigInt id
+        +BigInt user_id
+        +BigInt service_id
+        +BigInt pack_id
+        +Decimal amount
+        +Timestamp created_at
+        +belongsTo(User user)
+        +belongsTo(Service service)
+        +belongsTo(Pack pack)
+    }
+
+    User "1" --> "0..*" Transaction
+    User "1" --> "0..*" Order
+    User "1" --> "0..*" Statistic
+    Transaction "0..*" --> "1" User
+    Service "1" --> "0..*" Pack
+    Service "1" --> "0..*" Statistic
+    Pack "0..*" --> "1" Service
+    Pack "0..*" --> "1" Order
+    Pack "0..*" --> "1" Statistic
+    Order "0..*" --> "1" User
+    Order "0..*" --> "1" Pack
+    Statistic "0..*" --> "1" User
+    Statistic "0..*" --> "1" Service
+    Statistic "0..*" --> "1" Pack

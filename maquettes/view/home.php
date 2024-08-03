@@ -49,7 +49,7 @@ session_start();
     <div class="col-lg-4 col-6">
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>15</h3>
+                <h3></h3>
                 <p>Orders</p>
             </div>
             <div class="icon">
@@ -62,8 +62,8 @@ session_start();
     <div class="col-lg-4 col-6">
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>23</h3>
-                <p>Transactions</p>
+                <h3></h3>
+                <p>total Transactions</p>
             </div>
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -76,7 +76,7 @@ session_start();
         <div class="small-box bg-warning">
             <div class=" user inner d-flex align-items-center justify-content-between">
                 <div>
-                    <h3>60</h3>
+                    <h3></h3>
                     <p>Your credit balance is : 0.00 MAD</p>
                 </div>
                 <div>
@@ -165,7 +165,7 @@ session_start();
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h3 class="card-title">Progression des projets</h3>
+                <h3 class="card-title">services that i oderd it</h3>
                 <select id="timePeriod" class="form-control w-auto">
                     <option value="month">Mois</option>
                     <option value="week">Semaine</option>

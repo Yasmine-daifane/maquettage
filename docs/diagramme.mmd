@@ -1,71 +1,80 @@
-
 classDiagram
     %% Users
     class User {
         +int id
-        +string username
+        +string firstname
+        +string lastname
         +string email
         +string password
-        +float balance
-        +updateBalance()
-        +getTransactions()
-        +getOrders()
-    }
-
-    %% Orders
-    class Order {
-        +int id
-        +int user_id
-        +float amount
-        +date date
-        +string status
-        +getOrderDetails()
-        +updateOrder()
+        +string country
+        +hasMany(Transaction)
+        +hasMany(AcheterService)
+        +hasMany(RechargeBalance)
     }
 
     %% Transactions
     class Transaction {
         +int id
-        +int user_id
         +float amount
         +date date
         +string reference_id
         +string receipt
-        +getTransactionDetails()
-        +updateTransaction()
+        +belongsTo(User)
     }
 
-    %% Promotions
-    class Promotion {
+    %% Services
+    class Services {
         +int id
         +string title
         +string description
-        +float discount
         +date valid_until
         +string image
-        +getActivePromotions()
-        +getPromotionDetails()
+        +hasMany(PlanService)
     }
 
-    %% Balance Updates
-    class BalanceUpdate {
+    %% PlanService
+    class PlanService {
         +int id
-        +int user_id
-        +float amount
-        +string payment_method
-        +string receipt
-        +string reference_id
-        +string comment
-        +date created_at
-        +getUpdateDetails()
-        +updateBalance()
+        +int service_id
+        +belongsTo(Services)
     }
 
-    %% Relationships
-    User "1" -- "0..*" Order : has
-    User "1" -- "0..*" Transaction : has
-    User "1" -- "0..*" BalanceUpdate : has
-    Order "0..*" -- "1" User : belongs to
-    Transaction "0..*" -- "1" User : belongs to
-    BalanceUpdate "0..*" -- "1" User : belongs to
+    %% RechargeBalance
+    class RechargeBalance {
+        +int id
+        +float price
+        +float duration
+        +date created_at
+        +belongsTo(User)
+    }
 
+    %% AcheterService
+    class AcheterService {
+        +int id
+        +float price
+        +date datedebut
+        +date datefin
+        +date created_at
+        +belongsTo(User)
+        +belongsTo(PlanService)
+    }
+
+    %% TypeService
+    class TypeService {
+        +int id
+        +float price
+        +float duration
+        +date created_at
+        +belongsTo(PlanService)
+    }
+
+    User "1" --> "0..*" Transaction
+    User "1" --> "0..*" AcheterService
+    User "1" --> "0..*" RechargeBalance
+    Transaction "0..*" --> "1" User
+    Services "1" --> "0..*" PlanService
+    PlanService "0..*" --> "1" Services
+    RechargeBalance "0..*" --> "1" User
+    AcheterService "0..*" --> "1" User
+    AcheterService "0..*" --> "1" PlanService
+    TypeService "0..*" --> "1" PlanService
