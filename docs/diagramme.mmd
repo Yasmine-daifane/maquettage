@@ -1,3 +1,85 @@
+%% classDiagram
+%%     %% Users
+%%     class User {
+%%         +int id
+%%         +string firstname
+%%         +string lastname
+%%         +string email
+%%         +string password
+%%         +string country
+%%         +hasMany(Transaction)
+%%         +hasMany(AcheterService)
+%%         +hasMany(RechargeBalance)
+%%     }
+
+%%     %% Transactions
+%%     class Transaction {
+%%         +int id
+%%         +float amount
+%%         +date date
+%%         +string reference_id
+%%         +string receipt
+%%         +belongsTo(User)
+%%     }
+
+%%     %% Services
+%%     class Services {
+%%         +int id
+%%         +string title
+%%         +string description
+%%         +date valid_until
+%%         +string image
+%%         +hasMany(PlanService)
+%%     }
+
+%%     %% PlanService
+%%     class PlanService {
+%%         +int id
+%%         +int service_id
+%%         +belongsTo(Services)
+%%     }
+
+%%     %% RechargeBalance
+%%     class RechargeBalance {
+%%         +int id
+%%         +float price
+%%         +float duration
+%%         +date created_at
+%%         +belongsTo(User)
+%%     }
+
+%%     %% AcheterService
+%%     class AcheterService {
+%%         +int id
+%%         +float price
+%%         +date datedebut
+%%         +date datefin
+%%         +date created_at
+%%         +belongsTo(User)
+%%         +belongsTo(PlanService)
+%%     }
+
+%%     %% TypeService
+%%     class TypeService {
+%%         +int id
+%%         +float price
+%%         +float duration
+%%         +date created_at
+%%         +belongsTo(PlanService)
+%%     }
+
+%%     User "1" --> "0..*" Transaction
+%%     User "1" --> "0..*" AcheterService
+%%     User "1" --> "0..*" RechargeBalance
+%%     Transaction "0..*" --> "1" User
+%%     Services "1" --> "0..*" PlanService
+%%     PlanService "0..*" --> "1" Services
+%%     RechargeBalance "0..*" --> "1" User
+%%     AcheterService "0..*" --> "1" User
+%%     AcheterService "0..*" --> "1" PlanService
+%%     TypeService "0..*" --> "1" PlanService
+
+
 classDiagram
     %% Users
     class User {
@@ -14,11 +96,7 @@ classDiagram
 
     %% Transactions
     class Transaction {
-        +int id
-        +float amount
-        +date date
-        +string reference_id
-        +string receipt
+        +int id       
         +belongsTo(User)
     }
 
@@ -27,15 +105,15 @@ classDiagram
         +int id
         +string title
         +string description
-        +date valid_until
-        +string image
         +hasMany(PlanService)
     }
 
     %% PlanService
     class PlanService {
         +int id
-        +int service_id
+        +string image
+        +string vidoe
+         +string Link
         +belongsTo(Services)
     }
 
@@ -44,7 +122,7 @@ classDiagram
         +int id
         +float price
         +float duration
-        +date created_at
+        +date date
         +belongsTo(User)
     }
 
@@ -68,13 +146,13 @@ classDiagram
         +belongsTo(PlanService)
     }
 
-    User "1" --> "0..*" Transaction
-    User "1" --> "0..*" AcheterService
-    User "1" --> "0..*" RechargeBalance
-    Transaction "0..*" --> "1" User
-    Services "1" --> "0..*" PlanService
-    PlanService "0..*" --> "1" Services
-    RechargeBalance "0..*" --> "1" User
-    AcheterService "0..*" --> "1" User
-    AcheterService "0..*" --> "1" PlanService
-    TypeService "0..*" --> "1" PlanService
+    User "1" --> "0..*" Transaction : has many
+    User "1" --> "0..*" AcheterService : has many
+    User "1" --> "0..*" RechargeBalance : has many
+    Transaction "0..*" --> "1" User : belongs to
+    Services "1" --> "0..*" PlanService : has many
+    PlanService "0..*" --> "1" Services : belongs to
+    RechargeBalance "0..*" --> "1" User : belongs to
+    AcheterService "0..*" --> "1" User : belongs to
+    AcheterService "0..*" --> "1" PlanService : belongs to
+    TypeService "0..*" --> "1" PlanService : belongs to
