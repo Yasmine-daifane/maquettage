@@ -2,11 +2,11 @@
 %%     %% Users
 %%     class User {
 %%         +int id
-%%         +string firstname
-%%         +string lastname
-%%         +string email
-%%         +string password
-%%         +string country
+%%           firstname
+%%           lastname
+%%           email
+%%           password
+%%           country
 %%         +hasMany(Transaction)
 %%         +hasMany(AcheterService)
 %%         +hasMany(RechargeBalance)
@@ -17,18 +17,18 @@
 %%         +int id
 %%         +float amount
 %%         +date date
-%%         +string reference_id
-%%         +string receipt
+%%           reference_id
+%%           receipt
 %%         +belongsTo(User)
 %%     }
 
 %%     %% Services
 %%     class Services {
 %%         +int id
-%%         +string title
-%%         +string description
+%%           title
+%%           description
 %%         +date valid_until
-%%         +string image
+%%           image
 %%         +hasMany(PlanService)
 %%     }
 
@@ -84,11 +84,11 @@ classDiagram
     %% Users
     class User {
         +int id
-        +string firstname
-        +string lastname
-        +string email
-        +string password
-        +string country
+        firstname
+          lastname
+          email
+          password
+          country
         +hasMany(Transaction)
         +hasMany(AcheterService)
         +hasMany(RechargeBalance)
@@ -103,25 +103,25 @@ classDiagram
     %% Services
     class Services {
         +int id
-        +string title
-        +string description
+          title
+          description
         +hasMany(PlanService)
     }
 
     %% PlanService
     class PlanService {
         +int id
-        +string image
-        +string vidoe
-         +string Link
+          image
+          vidoe
+             Link
         +belongsTo(Services)
     }
 
     %% RechargeBalance
     class RechargeBalance {
         +int id
-        +float price
-        +float duration
+         price
+         duration
         +date date
         +belongsTo(User)
     }
@@ -129,7 +129,7 @@ classDiagram
     %% AcheterService
     class AcheterService {
         +int id
-        +float price
+         price
         +date datedebut
         +date datefin
         +date created_at
@@ -140,8 +140,8 @@ classDiagram
     %% TypeService
     class TypeService {
         +int id
-        +float price
-        +float duration
+         price
+         duration
         +date created_at
         +belongsTo(PlanService)
     }
