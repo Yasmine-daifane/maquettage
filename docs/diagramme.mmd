@@ -1,83 +1,143 @@
+%%   classDiagram
+%%     %% Users
+%%     class User {
+%%         +int id
+%%         firstname
+%%         lastname
+%%         email
+%%         password
+%%         country
+%%         +hasMany(UserTypeService)
+%%         +hasMany(RechargeBalance)
+%%     }
+     
+     
+%%      %% Services
+%% class Services { 
+%%         +int id
+%%         title
+%%         description
+%%         +hasMany(PlanService)
+%%     }
+
+%%     %% PlanService
+%%  class PlanService {
+%%         +int id
+%%         image
+%%         video
+%%         link
+%%         +belongsTo(Services)
+%%         +hasMany(TypeService)
+%%     }
+
+%%     %% RechargeBalance
+%%  class RechargeBalance {
+%%         +int id
+%%         price
+%%         duration
+%%         +date date
+%%         +belongsTo(User)
+%%     }
+
+%%     %% UserTypeService
+%%     class UserTypeService {
+%%         +int id
+%%         +decimal pricefinal
+%%         +date date
+%%         +belongsTo(User)
+%%         +belongsTo(TypeService)
+%%     }
+
+%%     %% TypeService
+%%     class TypeService {
+%%         +int id
+%%         price
+%%         duration
+%%         +date created_at
+%%         +belongsTo(PlanService)
+%%         +hasMany(UserTypeService)
+%%     }
+
+%%     %% Relationships
+%%     User "1" --> "0..*" UserTypeService : has many
+%%     UserTypeService "0..*" --> "1" User : belongs to
+%%     UserTypeService "0..*" --> "1" TypeService : belongs to
+%%     Services "1" --> "0..*" PlanService : has many
+%%     PlanService "0..*" --> "1" Services : belongs to
+%%     PlanService "1" --> "0..*" TypeService : has many
+%%     TypeService "0..*" --> "1" PlanService : belongs to
+%%     TypeService "1" --> "0..*" UserTypeService : has many
+%%     RechargeBalance "0..*" --> "1" User : belongs to
+
 %% classDiagram
 %%     %% Users
 %%     class User {
 %%         +int id
-%%           firstname
-%%           lastname
-%%           email
-%%           password
-%%           country
-%%         +hasMany(Transaction)
-%%         +hasMany(AcheterService)
+%%         firstname
+%%         lastname
+%%         email
+%%         password
+%%         country
+%%         +hasMany(UserTypeService)
 %%         +hasMany(RechargeBalance)
 %%     }
-
-%%     %% Transactions
-%%     class Transaction {
-%%         +int id
-%%         +float amount
-%%         +date date
-%%           reference_id
-%%           receipt
-%%         +belongsTo(User)
-%%     }
-
+    
 %%     %% Services
 %%     class Services {
 %%         +int id
-%%           title
-%%           description
-%%         +date valid_until
-%%           image
+%%         title
+%%         description
 %%         +hasMany(PlanService)
 %%     }
 
 %%     %% PlanService
 %%     class PlanService {
 %%         +int id
-%%         +int service_id
+%%         image
+%%         video
+%%         link
 %%         +belongsTo(Services)
+%%         +hasMany(TypeService)
 %%     }
 
 %%     %% RechargeBalance
 %%     class RechargeBalance {
 %%         +int id
-%%         +float price
-%%         +float duration
-%%         +date created_at
+%%         price
+%%         duration
+%%         +date date
 %%         +belongsTo(User)
 %%     }
 
-%%     %% AcheterService
-%%     class AcheterService {
+%%     %% UserTypeService (pivot table)
+%%     class UserTypeService {
 %%         +int id
-%%         +float price
-%%         +date datedebut
-%%         +date datefin
-%%         +date created_at
+%%         +decimal pricefinal
+%%         +date date
 %%         +belongsTo(User)
-%%         +belongsTo(PlanService)
+%%         +belongsTo(TypeService)
 %%     }
 
 %%     %% TypeService
 %%     class TypeService {
 %%         +int id
-%%         +float price
-%%         +float duration
+%%         price
+%%         duration
 %%         +date created_at
 %%         +belongsTo(PlanService)
+%%         +hasMany(UserTypeService)
 %%     }
 
-%%     User "1" --> "0..*" Transaction
-%%     User "1" --> "0..*" AcheterService
-%%     User "1" --> "0..*" RechargeBalance
-%%     Transaction "0..*" --> "1" User
-%%     Services "1" --> "0..*" PlanService
-%%     PlanService "0..*" --> "1" Services
-%%     RechargeBalance "0..*" --> "1" User
-%%     AcheterService "0..*" --> "1" User
-%%     AcheterService "0..*" --> "1" PlanService
-%%     TypeService "0..*" --> "1" PlanService
+%%     %% Relationships
+%%     User "1" --> "0..*" UserTypeService : has many
+%%     UserTypeService "0..*" --> "1" User : belongs to
+%%     UserTypeService "0..*" --> "1" TypeService : belongs to
+%%     Services "1" --> "0..*" PlanService : has many
+%%     PlanService "0..*" --> "1" Services : belongs to
+%%     PlanService "1" --> "0..*" TypeService : has many
+%%     TypeService "0..*" --> "1" PlanService : belongs to
+%%     TypeService "1" --> "0..*" UserTypeService : has many
+%%     RechargeBalance "0..*" --> "1" User : belongs to
 
 
 classDiagram
@@ -85,74 +145,70 @@ classDiagram
     class User {
         +int id
         firstname
-          lastname
-          email
-          password
-          country
-        +hasMany(Transaction)
-        +hasMany(AcheterService)
+        lastname
+        email
+        password
+        country
+        +hasMany(UserTypeService)
         +hasMany(RechargeBalance)
-    }
-
-    %% Transactions
-    class Transaction {
-        +int id       
-        +belongsTo(User)
     }
 
     %% Services
     class Services {
         +int id
-          title
-          description
+        title
+        description
         +hasMany(PlanService)
     }
 
     %% PlanService
     class PlanService {
         +int id
-          image
-          vidoe
-             Link
+        image
+        video
+        link
         +belongsTo(Services)
+        +hasMany(TypeService)
     }
 
     %% RechargeBalance
     class RechargeBalance {
         +int id
-         price
-         duration
+        price
+        duration
         +date date
         +belongsTo(User)
     }
 
-    %% AcheterService
-    class AcheterService {
+    %% UserTypeService (pivot table with additional info)
+    class UserTypeService {
         +int id
-         price
-        +date datedebut
-        +date datefin
-        +date created_at
+        +decimal pricefinal
+        +date date
         +belongsTo(User)
-        +belongsTo(PlanService)
+        +belongsTo(TypeService)
     }
 
     %% TypeService
     class TypeService {
         +int id
-         price
-         duration
+        price
+        duration
         +date created_at
         +belongsTo(PlanService)
+        +hasMany(UserTypeService)
     }
 
-    User "1" --> "0..*" Transaction : has many
-    User "1" --> "0..*" AcheterService : has many
-    User "1" --> "0..*" RechargeBalance : has many
-    Transaction "0..*" --> "1" User : belongs to
+    %% Relationships
+    User "1" --> "0..*" UserTypeService : has many
+    UserTypeService "0..*" --> "1" User : belongs to
+    UserTypeService "0..*" --> "1" TypeService : belongs to
     Services "1" --> "0..*" PlanService : has many
     PlanService "0..*" --> "1" Services : belongs to
-    RechargeBalance "0..*" --> "1" User : belongs to
-    AcheterService "0..*" --> "1" User : belongs to
-    AcheterService "0..*" --> "1" PlanService : belongs to
+    PlanService "1" --> "0..*" TypeService : has many
     TypeService "0..*" --> "1" PlanService : belongs to
+    TypeService "1" --> "0..*" UserTypeService : has many
+    RechargeBalance "0..*" --> "1" User : belongs to
+
+
+   

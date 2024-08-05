@@ -17,31 +17,27 @@
                 <form id="paymentForm" enctype="multipart/form-data" class="p-4">
                     <div class="form-group">
                         <label for="walletBalance"><i class="fas fa-wallet"></i> Current Balance</label>
-                        <input type="text" class="form-control" id="walletBalance" value="$100.00" readonly>
+                        <input type="text" class="form-control" id="walletBalance"  readonly>
                     </div>
                     <div class="form-group">
                         <label for="balanceAmount"><i class="fas fa-money-bill-wave"></i> Amount to Add</label>
-                        <input type="number" class="form-control" id="balanceAmount" placeholder="Enter amount" required>
+                        <input type="number" class="form-control" id="balanceAmount" placeholder="Enter amount that u want to charge" required>
                     </div>
                     <div class="form-group">
                         <label for="paymentMethod"><i class="fas fa-credit-card"></i> Payment Method</label>
                         <select class="form-control" id="paymentMethod" required>
-                            <option value="">Select Payment Method</option>
-                            <option value="credit_card">Credit Card</option>
-                            <option value="paypal">PayPal</option>
+                            <option value="">Transfert virement </option>
+                           
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="paymentReceipt"><i class="fas fa-cloud-upload-alt"></i> Upload Receipt</label>
+                        <label for="paymentReceipt"><i class="fas fa-cloud-upload-alt"></i> Upload Recu of viremant </label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="paymentReceipt" accept=".jpg,.jpeg,.png,.pdf">
                             <label class="custom-file-label" for="paymentReceipt">Choose file</label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="referenceId"><i class="fas fa-id-card"></i> Reference ID</label>
-                        <input type="text" class="form-control" id="referenceId" placeholder="Enter Reference ID" required>
-                    </div>
+                 
                     <div class="form-group">
                         <label for="comment"><i class="fas fa-comment-dots"></i> Comment/Message</label>
                         <textarea class="form-control" id="comment" rows="3" placeholder="Enter your comment"></textarea>
@@ -75,9 +71,6 @@
 
 <!-- Scripts to handle file input display -->
 
-
-
-<!-- Scripts to handle file input display -->
 
 
 

@@ -50,7 +50,7 @@ session_start();
         <div class="small-box bg-info">
             <div class="inner">
                 <h3></h3>
-                <p>Orders</p>
+                <p>number of Orders</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -108,7 +108,7 @@ session_start();
                   
 
                     <!-- Enhanced section for coupons and sales -->
-                    <div class="row mt-4 justify-content-center">
+                    <!-- <div class="row mt-4 justify-content-center">
                         <div class="col-lg-10">
                             <div class="card bg-gradient-primary">
                                 <div class="card-header border-0">
@@ -159,7 +159,7 @@ session_start();
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 <div class="row mt-4">
     <div class="col-md-6">
